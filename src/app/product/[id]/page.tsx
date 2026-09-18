@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllProducts, getProductById } from "@/lib/products";
 import { getEurRubRate } from "@/lib/cbr";
-import { formatRub, toRub } from "@/lib/pricing";
-import ProductImage from "@/components/ProductImage";
+import ProductGallery from "@/components/ProductGallery";
+import PriceDisplay from "@/components/PriceDisplay";
 import AddToCartButton from "@/components/AddToCartButton";
 
 interface Props {
@@ -25,7 +25,6 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   const { rate } = await getEurRubRate();
-  const rub = toRub(product.priceEur, rate);
   const catLabel = product.category === "women" ? "Женщинам" : "Мужчинам";
   const catHref = product.category === "women" ? "/women" : "/men";
 
@@ -44,13 +43,7 @@ export default async function ProductPage({ params }: Props) {
       </nav>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="aspect-[3/4] overflow-hidden rounded-xl bg-neutral-100">
-          <ProductImage
-            src={product.imageUrl}
-            alt={product.titleRu}
-            className="h-full w-full object-cover"
-          />
-        </div>
+        <ProductGallery images={product.imageUrls} alt={product.titleRu} />
 
         <div className="flex flex-col">
           <p className="text-sm uppercase tracking-wide text-neutral-500">
@@ -60,14 +53,16 @@ export default async function ProductPage({ params }: Props) {
             {product.titleRu}
           </h1>
           <div className="mt-4 flex items-baseline gap-3">
-            <span className="text-2xl font-semibold">{formatRub(rub)}</span>
+            <PriceDisplay
+              priceEur={product.priceEur}
+              priceEurWas={product.priceEurWas}
+              eurRate={rate}
+              size="lg"
+            />
             <span className="rounded bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-700">
               SALE
             </span>
           </div>
-          <p className="mt-1 text-xs text-neutral-400">
-            ≈ €{product.priceEur.toFixed(2)} · курс {rate.toFixed(2)} × 1,5
-          </p>
 
           <div className="mt-8">
             <AddToCartButton product={product} />
@@ -76,7 +71,7 @@ export default async function ProductPage({ params }: Props) {
           <ul className="mt-8 space-y-2 border-t border-neutral-200 pt-6 text-sm text-neutral-600">
             <li>• Доставка по России (условия уточняются при заказе)</li>
             <li>• Оплата после подтверждения менеджером</li>
-            <li>• Без регистрации и скидочных аккаунтов</li>
+            <li>• Без регистрации</li>
           </ul>
         </div>
       </div>

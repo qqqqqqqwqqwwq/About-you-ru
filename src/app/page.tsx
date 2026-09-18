@@ -4,7 +4,7 @@ import { getEurRubRate } from "@/lib/cbr";
 import ProductGrid from "@/components/ProductGrid";
 
 export default async function HomePage() {
-  const { rate, source } = await getEurRubRate();
+  const { rate } = await getEurRubRate();
   const products = getAllProducts().filter((p) => p.inStock).slice(0, 8);
 
   return (
@@ -36,12 +36,8 @@ export default async function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-2">
+        <div className="mb-6">
           <h2 className="text-xl font-bold">Популярное</h2>
-          <p className="text-xs text-neutral-500">
-            Курс EUR: {rate.toFixed(2)} ₽
-            {source === "fallback" ? " (запасной)" : " (ЦБ РФ)"} · ×1,5
-          </p>
         </div>
         <ProductGrid products={products} eurRate={rate} />
       </section>

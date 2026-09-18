@@ -14,7 +14,7 @@ export async function getEurRubRate(): Promise<{
   try {
     const res = await fetch(CBR_URL, {
       next: { revalidate: 86400 },
-      headers: { "User-Agent": "RassprodazhaMVP/1.0" },
+      headers: { "User-Agent": "Rassprodazha/1.0" },
     });
 
     if (!res.ok) {

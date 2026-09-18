@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { formatRub, toRub } from "@/lib/pricing";
 import ProductImage from "./ProductImage";
+import PriceDisplay from "./PriceDisplay";
 
 interface Props {
   product: Product;
@@ -9,8 +9,6 @@ interface Props {
 }
 
 export default function ProductCard({ product, eurRate }: Props) {
-  const rub = toRub(product.priceEur, eurRate);
-
   return (
     <Link
       href={`/product/${product.id}`}
@@ -38,7 +36,13 @@ export default function ProductCard({ product, eurRate }: Props) {
         <h3 className="line-clamp-2 text-sm font-medium leading-snug text-neutral-900">
           {product.titleRu}
         </h3>
-        <p className="mt-auto pt-2 text-base font-semibold">{formatRub(rub)}</p>
+        <div className="mt-auto pt-2">
+          <PriceDisplay
+            priceEur={product.priceEur}
+            priceEurWas={product.priceEurWas}
+            eurRate={eurRate}
+          />
+        </div>
       </div>
     </Link>
   );

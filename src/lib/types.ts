@@ -5,8 +5,14 @@ export interface Product {
   titleRu: string;
   brand: string;
   category: Category;
+  /** Current / sale price in EUR */
   priceEur: number;
+  /** Original price in EUR before discount (optional) */
+  priceEurWas?: number;
   sizes: string[];
+  /** All product photos; first is primary */
+  imageUrls: string[];
+  /** First image — kept for backward compatibility with cards/cart */
   imageUrl: string;
   inStock: boolean;
 }

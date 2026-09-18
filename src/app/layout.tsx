@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Распродажа — женская и мужская одежда",
   description:
-    "Демо-витрина распродажи: женская и мужская одежда. Цены в рублях. Заказ без регистрации.",
+    "Распродажа женской и мужской одежды. Цены в рублях. Заказ без регистрации.",
 };
 
 export default function RootLayout({
