@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <rect fill="#f3f4f6" width="600" height="800"/>
+  <text x="50%" y="48%" text-anchor="middle" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="28">Нет фото</text>
+  <text x="50%" y="54%" text-anchor="middle" fill="#d1d5db" font-family="system-ui,sans-serif" font-size="18">Распродажа</text>
+</svg>

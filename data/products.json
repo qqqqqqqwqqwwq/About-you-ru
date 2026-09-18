@@ -1,0 +1,162 @@
+[
+  {
+    "id": "w-001",
+    "titleRu": "Платье миди с поясом",
+    "brand": "ONLY",
+    "category": "women",
+    "priceEur": 39.99,
+    "sizes": ["XS", "S", "M", "L"],
+    "imageUrl": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-002",
+    "titleRu": "Джинсы Mom Fit",
+    "brand": "Levi's",
+    "category": "women",
+    "priceEur": 59.99,
+    "sizes": ["34", "36", "38", "40", "42"],
+    "imageUrl": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-003",
+    "titleRu": "Блузка с объёмными рукавами",
+    "brand": "Mango",
+    "category": "women",
+    "priceEur": 29.99,
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "imageUrl": "https://images.unsplash.com/photo-1564257631407-4deb1f99d92b?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-004",
+    "titleRu": "Куртка-бомбер оверсайз",
+    "brand": "Pull&Bear",
+    "category": "women",
+    "priceEur": 49.99,
+    "sizes": ["S", "M", "L"],
+    "imageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-005",
+    "titleRu": "Свитер крупной вязки",
+    "brand": "H&M",
+    "category": "women",
+    "priceEur": 34.99,
+    "sizes": ["XS", "S", "M", "L"],
+    "imageUrl": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-006",
+    "titleRu": "Юбка плиссе миди",
+    "brand": "Zara",
+    "category": "women",
+    "priceEur": 24.99,
+    "sizes": ["XS", "S", "M", "L"],
+    "imageUrl": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-007",
+    "titleRu": "Кроссовки белые классические",
+    "brand": "Nike",
+    "category": "women",
+    "priceEur": 79.99,
+    "sizes": ["36", "37", "38", "39", "40", "41"],
+    "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "w-008",
+    "titleRu": "Тренч классический бежевый",
+    "brand": "Stradivarius",
+    "category": "women",
+    "priceEur": 69.99,
+    "sizes": ["S", "M", "L"],
+    "imageUrl": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=800&fit=crop",
+    "inStock": false
+  },
+  {
+    "id": "m-001",
+    "titleRu": "Футболка базового кроя",
+    "brand": "Selected Homme",
+    "category": "men",
+    "priceEur": 19.99,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "imageUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-002",
+    "titleRu": "Джинсы Slim Fit",
+    "brand": "Jack & Jones",
+    "category": "men",
+    "priceEur": 44.99,
+    "sizes": ["30", "32", "34", "36", "38"],
+    "imageUrl": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-003",
+    "titleRu": "Худи с капюшоном",
+    "brand": "Adidas",
+    "category": "men",
+    "priceEur": 54.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "imageUrl": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-004",
+    "titleRu": "Рубашка оксфорд",
+    "brand": "Tommy Hilfiger",
+    "category": "men",
+    "priceEur": 64.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "imageUrl": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-005",
+    "titleRu": "Куртка джинсовая",
+    "brand": "Levi's",
+    "category": "men",
+    "priceEur": 89.99,
+    "sizes": ["M", "L", "XL"],
+    "imageUrl": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-006",
+    "titleRu": "Чиносы классические",
+    "brand": "Reserved",
+    "category": "men",
+    "priceEur": 34.99,
+    "sizes": ["30", "32", "34", "36"],
+    "imageUrl": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-007",
+    "titleRu": "Кроссовки lifestyle",
+    "brand": "New Balance",
+    "category": "men",
+    "priceEur": 99.99,
+    "sizes": ["40", "41", "42", "43", "44", "45"],
+    "imageUrl": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=600&h=800&fit=crop",
+    "inStock": true
+  },
+  {
+    "id": "m-008",
+    "titleRu": "Пальто шерстяное",
+    "brand": "Selected Homme",
+    "category": "men",
+    "priceEur": 129.99,
+    "sizes": ["S", "M", "L", "XL"],
+    "imageUrl": "https://images.unsplash.com/photo-1544923246-77307dd62882?w=600&h=800&fit=crop",
+    "inStock": false
+  }
+]
