@@ -1,22 +1,45 @@
-import { getProductsByCategory } from "@/lib/products";
+import {
+  getProductsByCategory,
+  getProductsByCategorySlug,
+  getSubcategories,
+} from "@/lib/products";
 import { getEurRubRate } from "@/lib/cbr";
-import ProductGrid from "@/components/ProductGrid";
+import CategoryChips from "@/components/CategoryChips";
+import CatalogClient from "@/components/CatalogClient";
 
 export const metadata = {
   title: "Мужчинам — Распродажа",
 };
 
-export default async function MenPage() {
+interface Props {
+  searchParams?: { cat?: string };
+}
+
+export default async function MenPage({ searchParams }: Props) {
   const { rate } = await getEurRubRate();
-  const products = getProductsByCategory("men");
+  const slug = searchParams?.cat?.trim() || undefined;
+  const products = slug
+    ? getProductsByCategorySlug("men", slug)
+    : getProductsByCategory("men");
+  const subcategories = getSubcategories("men");
+  const activeName = slug
+    ? subcategories.find((c) => c.slug === slug)?.nameRu
+    : undefined;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
-      <h1 className="mb-2 text-2xl font-bold">Мужчинам</h1>
-      <p className="mb-6 text-sm text-neutral-500">
+      <h1 className="mb-2 text-2xl font-bold">
+        Мужчинам{activeName ? ` — ${activeName}` : ""}
+      </h1>
+      <p className="mb-4 text-sm text-neutral-500">
         {products.length} товар(ов) · цены в ₽
       </p>
-      <ProductGrid products={products} eurRate={rate} />
+      <CategoryChips
+        category="men"
+        subcategories={subcategories}
+        activeSlug={slug}
+      />
+      <CatalogClient products={products} eurRate={rate} />
     </div>
   );
 }

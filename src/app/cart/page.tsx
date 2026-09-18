@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { getAllProducts } from "@/lib/products";
 import { FALLBACK_EUR_RATE } from "@/lib/cbr";
-import { formatRub, toRub } from "@/lib/pricing";
+import { DELIVERY_RUB, formatRub, toRub } from "@/lib/pricing";
 import ProductImage from "@/components/ProductImage";
 
 const products = getAllProducts();
@@ -46,7 +46,9 @@ export default function CartPage() {
     }>;
   }, [items, eurRate]);
 
-  const totalRub = lines.reduce((s, l) => s + l.lineRub, 0);
+  const itemsRub = lines.reduce((s, l) => s + l.lineRub, 0);
+  const deliveryRub = lines.length > 0 ? DELIVERY_RUB : 0;
+  const totalRub = itemsRub + deliveryRub;
 
   if (!ready) {
     return (
@@ -149,17 +151,27 @@ export default function CartPage() {
         ))}
       </ul>
 
-      <div className="mt-6 flex flex-col gap-4 rounded-xl border border-neutral-200 bg-neutral-50 p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-neutral-500">Итого</p>
-          <p className="text-2xl font-bold">{formatRub(totalRub)}</p>
+      <div className="mt-6 space-y-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+        <div className="flex justify-between text-sm">
+          <span className="text-neutral-600">Товары</span>
+          <span>{formatRub(itemsRub)}</span>
         </div>
-        <Link
-          href="/checkout"
-          className="rounded-lg bg-black px-6 py-3 text-center text-sm font-semibold text-white hover:bg-neutral-800"
-        >
-          Оформить заказ
-        </Link>
+        <div className="flex justify-between text-sm">
+          <span className="text-neutral-600">Доставка</span>
+          <span>{formatRub(deliveryRub)}</span>
+        </div>
+        <div className="flex items-center justify-between border-t border-neutral-200 pt-3">
+          <div>
+            <p className="text-sm text-neutral-500">Итого</p>
+            <p className="text-2xl font-bold">{formatRub(totalRub)}</p>
+          </div>
+          <Link
+            href="/checkout"
+            className="rounded-lg bg-black px-6 py-3 text-center text-sm font-semibold text-white hover:bg-neutral-800"
+          >
+            Оформить заказ
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+{
+  "women": [
+    {"slug": "svetre-pleteniny", "nameSk": "Svetre & Pleteniny", "nameRu": "Свитеры и трикотаж", "path": "/c/zeny/vypredaj/svetre-pleteniny-517247"},
+    {"slug": "saty", "nameSk": "Šaty", "nameRu": "Платья", "path": "/c/zeny/vypredaj/saty-32626"},
+    {"slug": "rifle", "nameSk": "Rifle", "nameRu": "Джинсы", "path": "/c/zeny/vypredaj/rifle-32623"},
+    {"slug": "bundy", "nameSk": "Bundy", "nameRu": "Куртки", "path": "/c/zeny/vypredaj/bundy-32621"},
+    {"slug": "kabaty", "nameSk": "Kabáty", "nameRu": "Пальто", "path": "/c/zeny/vypredaj/kabaty-92474"},
+    {"slug": "nohavice", "nameSk": "Nohavice", "nameRu": "Брюки", "path": "/c/zeny/vypredaj/nohavice-32624"},
+    {"slug": "sukne", "nameSk": "Sukne", "nameRu": "Юбки", "path": "/c/zeny/vypredaj/sukne-32627"},
+    {"slug": "bluzky-tuniky", "nameSk": "Blúzky & tuniky", "nameRu": "Блузки и туники", "path": "/c/zeny/vypredaj/bluzky-tuniky-32616"},
+    {"slug": "mikiny", "nameSk": "Mikiny", "nameRu": "Худи и свитшоты", "path": "/c/zeny/vypredaj/mikiny-32619"},
+    {"slug": "saka", "nameSk": "Saká", "nameRu": "Пиджаки", "path": "/c/zeny/vypredaj/saka-32622"},
+    {"slug": "overaly", "nameSk": "Overaly", "nameRu": "Комбинезоны", "path": "/c/zeny/vypredaj/overaly-32629"},
+    {"slug": "obuv", "nameSk": "Obuv", "nameRu": "Обувь", "path": "/c/zeny/vypredaj/obuv-32555"}
+  ],
+  "men": [
+    {"slug": "bundy", "nameSk": "Bundy", "nameRu": "Куртки", "path": "/c/muzi/vypredaj/bundy-32642"},
+    {"slug": "rifle", "nameSk": "Rifle", "nameRu": "Джинсы", "path": "/c/muzi/vypredaj/rifle-32643"},
+    {"slug": "mikiny", "nameSk": "Mikiny", "nameRu": "Худи и свитшоты", "path": "/c/muzi/vypredaj/mikiny-32640"},
+    {"slug": "svetre-kardigany", "nameSk": "Svetre & kardigány", "nameRu": "Свитеры и кардиганы", "path": "/c/muzi/vypredaj/svetre-kardigany-32638"},
+    {"slug": "nohavice", "nameSk": "Nohavice", "nameRu": "Брюки", "path": "/c/muzi/vypredaj/nohavice-32644"},
+    {"slug": "kosele", "nameSk": "Košele", "nameRu": "Рубашки", "path": "/c/muzi/vypredaj/kosele-32641"},
+    {"slug": "kabaty", "nameSk": "Kabáty", "nameRu": "Пальто", "path": "/c/muzi/vypredaj/kabaty-101321"},
+    {"slug": "obleky-saka", "nameSk": "Obleky & saká", "nameRu": "Костюмы и пиджаки", "path": "/c/muzi/vypredaj/obleky-saka-32563"},
+    {"slug": "obuv", "nameSk": "Obuv", "nameRu": "Обувь", "path": "/c/muzi/vypredaj/obuv-32561"}
+  ]
+}

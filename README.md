@@ -5,11 +5,13 @@
 
 ## Возможности
 
-- Разделы **Женщинам** / **Мужчинам**
-- Каталог из `data/products.json` (поля: `priceEur`, `priceEurWas`, `imageUrls`)
-- Цены в **рублях** (пересчёт из EUR по курсу ЦБ с коэффициентом; в UI показывается только ₽)
+- Разделы **Женщинам** / **Мужчинам** с подкатегориями (чипы и маршруты `/women/[slug]`, `/men/[slug]`)
+- Каталог из `data/products.json` (sale EUR &gt; 50, ~100 товаров)
+- Цены в **рублях**: `RUB = priceEur × курс ЦБ EUR × 2.0` (в UI только ₽)
+- Фиксированная доставка **2990 ₽** (корзина, checkout, письмо/API)
 - Зачёркнутая старая цена, если задан `priceEurWas`
-- Галерея фото на странице товара
+- Описание, материал, галерея на странице товара
+- Сортировка и фильтры (бренд, размер, материал, диапазон цены)
 - Корзина в `localStorage` (размер, количество)
 - Оформление заказа → `POST /api/order` → письмо через Resend (если заданы env), иначе soft-fail с логом
 
@@ -45,37 +47,56 @@ npm start
 
 Если ключи не заданы, заказ всё равно принимается: данные пишутся в лог сервера.
 
+## Цены и доставка
+
+- Коэффициент пересчёта: **× 2.0** к курсу ЦБ EUR
+- Доставка: **2990 ₽** фиксированно, добавляется к сумме товаров
+- В интерфейсе покупателя **не** показываются EUR, курс и формула — только рубли
+
 ## Структура
 
 ```
-data/products.json     # каталог
-src/app/               # страницы и API
-src/components/        # UI
-src/lib/               # товары, ЦБ, цены, корзина
+data/products.json          # каталог
+data/category_sources.json  # источники подкатегорий About You
+data/SCRAPE_STATS.json      # статистика скрапинга
+scripts/scrape_aboutyou.py  # обновление каталога
+src/app/                    # страницы и API
+src/components/             # UI
+src/lib/                    # товары, ЦБ, цены, корзина
 ```
 
-Страницы: `/`, `/women`, `/men`, `/product/[id]`, `/cart`, `/checkout`, `/checkout/success`.
+Страницы: `/`, `/women`, `/women/[slug]`, `/men`, `/men/[slug]`, `/product/[id]`, `/cart`, `/checkout`, `/checkout/success`.
 
 ## Схема товара (`products.json`)
 
 ```json
 {
-  "id": "w-001",
+  "id": "10261840",
   "titleRu": "…",
   "brand": "…",
   "category": "women",
-  "priceEur": 39.99,
-  "priceEurWas": 59.99,
+  "categorySlug": "saty",
+  "categoryNameRu": "Платья",
+  "priceEur": 79.99,
+  "priceEurWas": 129.99,
   "sizes": ["S", "M", "L"],
-  "imageUrls": ["https://…", "https://…"],
+  "imageUrls": ["https://…"],
   "imageUrl": "https://…",
+  "descriptionRu": "…",
+  "material": "хлопок",
+  "materials": ["хлопок"],
   "inStock": true
 }
 ```
 
-- `priceEur` — текущая (sale) цена в EUR  
-- `priceEurWas` — цена до скидки (опционально)  
-- `imageUrls` — все фото; `imageUrl` дублирует первое (для совместимости)
+## Обновление каталога
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install deep-translator
+.venv/bin/python scripts/scrape_aboutyou.py
+```
+
+Только товары с sale `priceEur > 50`, цель ~50 женщин / ~50 мужчин по подкатегориям из `category_sources.json`.
 
 ## TODO
 

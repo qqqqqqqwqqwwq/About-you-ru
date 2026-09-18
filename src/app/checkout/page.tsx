@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/lib/cart";
 import { getAllProducts } from "@/lib/products";
 import { FALLBACK_EUR_RATE } from "@/lib/cbr";
-import { formatRub, toRub } from "@/lib/pricing";
+import { DELIVERY_RUB, formatRub, toRub } from "@/lib/pricing";
 import type { OrderPayload } from "@/lib/types";
 
 const products = getAllProducts();
@@ -52,7 +52,9 @@ export default function CheckoutPage() {
       .filter(Boolean) as OrderPayload["items"];
   }, [items, eurRate]);
 
-  const totalRub = orderItems.reduce((s, i) => s + i.priceRub * i.qty, 0);
+  const itemsRub = orderItems.reduce((s, i) => s + i.priceRub * i.qty, 0);
+  const deliveryRub = orderItems.length > 0 ? DELIVERY_RUB : 0;
+  const totalRub = itemsRub + deliveryRub;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -70,6 +72,8 @@ export default function CheckoutPage() {
       address: address.trim(),
       comment: comment.trim(),
       items: orderItems,
+      deliveryRub,
+      itemsRub,
       totalRub,
       eurRate,
     };
@@ -120,10 +124,20 @@ export default function CheckoutPage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-8">
       <h1 className="mb-2 text-2xl font-bold">Оформление заказа</h1>
-      <p className="mb-6 text-sm text-neutral-500">
-        Итого: <strong>{formatRub(totalRub)}</strong> · {orderItems.length}{" "}
-        поз.
-      </p>
+      <div className="mb-6 space-y-1 rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm">
+        <div className="flex justify-between">
+          <span className="text-neutral-600">Товары ({orderItems.length} поз.)</span>
+          <span>{formatRub(itemsRub)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-neutral-600">Доставка</span>
+          <span>{formatRub(deliveryRub)}</span>
+        </div>
+        <div className="flex justify-between border-t border-neutral-200 pt-2 font-semibold">
+          <span>Итого</span>
+          <span>{formatRub(totalRub)}</span>
+        </div>
+      </div>
 
       <form onSubmit={onSubmit} className="space-y-4">
         <Field label="Имя *" value={name} onChange={setName} required />

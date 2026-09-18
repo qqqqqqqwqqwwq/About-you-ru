@@ -5,6 +5,8 @@ export interface Product {
   titleRu: string;
   brand: string;
   category: Category;
+  categorySlug: string;
+  categoryNameRu: string;
   /** Current / sale price in EUR */
   priceEur: number;
   /** Original price in EUR before discount (optional) */
@@ -14,6 +16,9 @@ export interface Product {
   imageUrls: string[];
   /** First image — kept for backward compatibility with cards/cart */
   imageUrl: string;
+  descriptionRu: string;
+  material?: string;
+  materials?: string[];
   inStock: boolean;
 }
 
@@ -38,6 +43,13 @@ export interface OrderPayload {
     priceEur: number;
     priceRub: number;
   }>;
+  deliveryRub: number;
+  itemsRub: number;
   totalRub: number;
   eurRate: number;
+}
+
+export interface CategoryMeta {
+  slug: string;
+  nameRu: string;
 }

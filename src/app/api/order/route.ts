@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import type { OrderPayload } from "@/lib/types";
+import { DELIVERY_RUB } from "@/lib/pricing";
 
 function isValidOrder(body: unknown): body is OrderPayload {
   if (!body || typeof body !== "object") return false;
@@ -33,6 +34,11 @@ function formatEmailHtml(order: OrderPayload): string {
     )
     .join("");
 
+  const delivery = order.deliveryRub ?? DELIVERY_RUB;
+  const itemsRub =
+    order.itemsRub ??
+    order.items.reduce((s, i) => s + i.priceRub * i.qty, 0);
+
   return `
     <h2>Новый заказ — Распродажа</h2>
     <p><strong>Имя:</strong> ${escapeHtml(order.name)}<br/>
@@ -51,8 +57,11 @@ function formatEmailHtml(order: OrderPayload): string {
       </thead>
       <tbody>${rows}</tbody>
     </table>
-    <p style="margin-top:16px"><strong>Итого:</strong> ${order.totalRub.toLocaleString("ru-RU")} ₽
-    (курс EUR ${order.eurRate.toFixed(2)} × 1,5)</p>
+    <p style="margin-top:16px">
+      Товары: ${itemsRub.toLocaleString("ru-RU")} ₽<br/>
+      Доставка: ${delivery.toLocaleString("ru-RU")} ₽<br/>
+      <strong>Итого:</strong> ${order.totalRub.toLocaleString("ru-RU")} ₽
+    </p>
   `;
 }
 
@@ -77,6 +86,14 @@ export async function POST(req: Request) {
   }
 
   const order = body;
+  // Ensure delivery is present in logged/emailed payload
+  if (typeof order.deliveryRub !== "number") {
+    order.deliveryRub = DELIVERY_RUB;
+  }
+  if (typeof order.itemsRub !== "number") {
+    order.itemsRub = order.items.reduce((s, i) => s + i.priceRub * i.qty, 0);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.ORDER_TO_EMAIL;
   const fromEmail =
